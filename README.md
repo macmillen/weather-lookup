@@ -1,4 +1,6 @@
 # WeatherApp
+Checkout hosted version:
+#### https://weather-app-252510.web.app/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
 
