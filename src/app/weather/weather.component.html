@@ -1,12 +1,47 @@
 <div class="container">
 
+    <h1 class="mat-display-1 title">Weather Lookup</h1>
+
+    <!-- Upper Box: Search -->
     <div id="search-box">
         <h1 class="mat-h1 large-text">Find a Forecast</h1>
-        <mat-form-field appearance="outline" class="full-width">
+
+        <!-- Temperature Unit Selection -->
+        <mat-button-toggle-group (change)="getWeather(lastCoords)" [(ngModel)]="units" name="units"
+            class="units">
+            <mat-button-toggle checked="true" value="metric">Celsius</mat-button-toggle>
+            <mat-button-toggle value="imperial">Fahrenheit</mat-button-toggle>
+            <mat-button-toggle value="">Kelvin</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <!-- Address Autocomplete -->
+        <mat-form-field color="accent" appearance="outline" class="full-width">
             <mat-label>Address</mat-label>
-            <input matInput matGoogleMapsAutocomplete [type]="'cities'"
-                (onAutocompleteSelected)="onAutocompleteSelected($event)">
+            <input matInput matGoogleMapsAutocomplete (onLocationSelected)="getWeather($event)">
         </mat-form-field>
+        <mat-progress-bar *ngIf="!weatherData" mode="indeterminate"></mat-progress-bar>
     </div>
 
+    <!-- Lower Box: Result -->
+    <div *ngIf="weatherData" id="weather-box">
+        <h1 class="mat-h1 weather-location">{{weatherData.name}}</h1>
+        <div class="columns">
+            <!-- Temperature -->
+            <div class="vertical-center">
+                <h2 class="mat-display-1 weather-temp">{{weatherData.main.temp}} {{getTemperatureUnit()}} </h2>
+                <h2 class="weather-temp-range">min: {{weatherData.main.temp_min}} {{getTemperatureUnit()}}</h2>
+                <h2 class="weather-temp-range">max: {{weatherData.main.temp_max}} {{getTemperatureUnit()}}</h2>
+            </div>
+            <!-- Icon / Description -->
+            <div>
+                <img class="weather-icon"
+                    [src]="'http://openweathermap.org/img/wn/' + weatherData.weather.icon + '@2x.png'">
+                <h2 class="mat-h2 weather-desc">{{weatherData.weather.description}}</h2>
+            </div>
+            <!-- Local Time -->
+            <div class="vertical-center">
+                <h2 class="mat-h2 weather-time">{{localTime | date:'H:mm':'UTC+0'}}</h2>
+            </div>
+        </div>
+    </div>
 </div>

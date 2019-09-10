@@ -10,6 +10,9 @@ import { WeatherComponent } from './weather/weather.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     MatGoogleMapsAutocompleteModule,
@@ -26,7 +30,9 @@ import { MatInputModule } from '@angular/material/input';
       libraries: ['places']
     }),
     BrowserAnimationsModule,
-    MatInputModule
+    MatButtonToggleModule,
+    MatInputModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
