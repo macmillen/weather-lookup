@@ -1,0 +1,19 @@
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.full-width {
+    width: 100%;
+}
+
+#search-box {
+    border: #0045ff solid;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.large-text {
+    font-weight: 300;
+    color: #0045ff;
+}
